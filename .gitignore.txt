@@ -1,0 +1,13 @@
+# Visual Studio files
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+
+# Build files
+*.exe
+*.obj
+*.log
+
+# Other
+*.user
