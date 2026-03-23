@@ -5,13 +5,13 @@
 
 using namespace std;
 
-// Generate random number between From and To
+// Generate random number
 int RandomNumber(int From, int To)
 {
     return rand() % (To - From + 1) + From;
 }
 
-// Fill matrix with random numbers
+// Fill matrix
 void FillMatrixWithRandomNumbers(int arr[3][3], short Rows, short Cols)
 {
     for (short i = 0; i < Rows; i++)
@@ -36,7 +36,7 @@ void PrintMatrix(int arr[3][3], short Rows, short Cols)
     }
 }
 
-// Calculate sum of one column
+// Sum one column
 int ColSum(int arr[3][3], short Rows, short ColNumber)
 {
     int Sum = 0;
@@ -49,32 +49,41 @@ int ColSum(int arr[3][3], short Rows, short ColNumber)
     return Sum;
 }
 
-// Print sum of each column
-void PrintEachColSum(int arr[3][3], short Rows, short Cols)
+// Store all column sums in array
+void SumMatrixColsInArray(int arr[3][3], int arrSum[3], short Rows, short Cols)
 {
-    cout << "\nThe following are the sum of each column in the matrix:\n\n";
-
-    for (short j = 0; j < Cols; j++)
+    for (short i = 0; i < Cols; i++)
     {
-        cout << "Column " << j + 1 << " Sum = "
-            << ColSum(arr, Rows, j) << endl;
+        arrSum[i] = ColSum(arr, Rows, i);
+    }
+}
+
+// Print column sums
+void PrintColsSumArray(int arr[3], short length)
+{
+    cout << "\nThe following are the sum of each column:\n\n";
+
+    for (short i = 0; i < length; i++)
+    {
+        cout << "Column " << i + 1 << " Sum = " << arr[i] << endl;
     }
 }
 
 int main()
 {
-    // Seed random generator (only once)
     srand((unsigned)time(NULL));
 
     int arr[3][3];
+    int arrSum[3]; 
 
     FillMatrixWithRandomNumbers(arr, 3, 3);
 
-    cout << "\nThe following is a 3x3 random matrix:\n\n";
+    cout << "\nMatrix:\n\n";
     PrintMatrix(arr, 3, 3);
 
-    PrintEachColSum(arr, 3, 3);
-    cout << arr[0][0] << endl;
+    SumMatrixColsInArray(arr, arrSum, 3, 3);
+
+    PrintColsSumArray(arrSum, 3);
 
     return 0;
 }
