@@ -1,20 +1,80 @@
-// SumEeachCulinMatrix.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+// Generate random number between From and To
+int RandomNumber(int From, int To)
+{
+    return rand() % (To - From + 1) + From;
+}
+
+// Fill matrix with random numbers
+void FillMatrixWithRandomNumbers(int arr[3][3], short Rows, short Cols)
+{
+    for (short i = 0; i < Rows; i++)
+    {
+        for (short j = 0; j < Cols; j++)
+        {
+            arr[i][j] = RandomNumber(1, 100);
+        }
+    }
+}
+
+// Print matrix
+void PrintMatrix(int arr[3][3], short Rows, short Cols)
+{
+    for (short i = 0; i < Rows; i++)
+    {
+        for (short j = 0; j < Cols; j++)
+        {
+            cout << setw(4) << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Calculate sum of one column
+int ColSum(int arr[3][3], short Rows, short ColNumber)
+{
+    int Sum = 0;
+
+    for (short i = 0; i < Rows; i++)
+    {
+        Sum += arr[i][ColNumber];
+    }
+
+    return Sum;
+}
+
+// Print sum of each column
+void PrintEachColSum(int arr[3][3], short Rows, short Cols)
+{
+    cout << "\nThe following are the sum of each column in the matrix:\n\n";
+
+    for (short j = 0; j < Cols; j++)
+    {
+        cout << "Column " << j + 1 << " Sum = "
+            << ColSum(arr, Rows, j) << endl;
+    }
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    // Seed random generator (only once)
+    srand((unsigned)time(NULL));
+
+    int arr[3][3];
+
+    FillMatrixWithRandomNumbers(arr, 3, 3);
+
+    cout << "\nThe following is a 3x3 random matrix:\n\n";
+    PrintMatrix(arr, 3, 3);
+
+    PrintEachColSum(arr, 3, 3);
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+%
