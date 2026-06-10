@@ -61,7 +61,7 @@ I am continuously adding new problems and improving previous solutions.
 
 ## 🌍 Career Goal
 
-I am actively working on improving my programming skills to pursue a professional career in software development and secure an Ausbildung opportunity in Germany.
+I am actively working on improving my programming skills to pursue a professional career in software development.
 
 ---
 
